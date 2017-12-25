@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct ImageGenerator: Generator {
+public struct ImageSetGenerator: Generator {
     public func generate(for directories: [ImageSet]) -> String {
         fatalError()
     }

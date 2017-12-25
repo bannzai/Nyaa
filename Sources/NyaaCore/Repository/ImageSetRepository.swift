@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol ImageRepository: Repository {
+public protocol ImageSetRepository: Repository {
     func fetchAssets() -> [ImageSet]
 }
