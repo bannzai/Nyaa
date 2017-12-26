@@ -3,7 +3,8 @@ import NyaaCore
 
 
 func main() {
-    let hoge = try! ImageSetRepository(from: "/Users/hirose/develop/products/Chalin/Chalin/Assets.xcassets/").fetchAssets()
+    let debugPath = ProcessInfo.processInfo.environment["DEBUG_ASSETS_PATH"]!
+    let hoge = try! ImageSetRepository(from: debugPath).fetchAssets()
     dump(hoge)
     exit(0)
 }

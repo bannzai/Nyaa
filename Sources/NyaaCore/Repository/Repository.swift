@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import PathKit
 
 public protocol Repository {
     associatedtype Output = Directory
@@ -16,19 +15,12 @@ public protocol Repository {
 extension Repository {
     // convenience method
     func fetch<T: Directory>(from assetsPath: String) throws ->  [T] {
-        let path: Path = Path(assetsPath)
-        let children = try path.recursiveChildren()
+        let paths = try FileManager.default.subpathsOfDirectory(atPath: assetsPath)
         
-        return children
-            .filter { (path) -> Bool in
-                return path.extension == T.type.folderExtension
-            }
-            .map { path in
-                return T(
-                    parents: Array(path.components.dropLast()),
-                    name: path.lastComponent
-                )
-        }
+        return paths
+            .map { NSString(string: $0 ) }
+            .filter { $0.pathExtension == T.type.folderExtension }
+            .map { T(parents: Array($0.pathComponents.dropLast()), name: $0.lastPathComponent) }
     }
 }
 
