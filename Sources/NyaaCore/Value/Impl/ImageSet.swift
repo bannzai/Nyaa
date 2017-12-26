@@ -8,10 +8,16 @@
 import Foundation
 
 public struct ImageSet: Directory {
-    public var type: DirectoryType {
-        return .imageSet
+    public static let type: DirectoryType = .imageSet
+    public let parents: [String]
+    public let name: String
+    
+    public init(
+        parents: [String],
+        name: String
+        ) {
+        self.parents = parents
+        self.name = name
     }
     
-    public let parents: [Directory]
-    public let name: String
 }

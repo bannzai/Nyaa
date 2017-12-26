@@ -1,3 +1,4 @@
+
 //
 //  ImageRepository.swift
 //  NyaaPackageDescription
@@ -6,7 +7,18 @@
 //
 
 import Foundation
+import PathKit
 
-public protocol ImageSetRepository: Repository {
-    func fetchAssets() -> [ImageSet]
+public struct ImageSetRepository: Repository {
+    private let assetsPath: String
+    
+    public init(
+        from assetsPath: String
+        ) {
+        self.assetsPath = assetsPath
+    }
+    
+    public func fetchAssets() throws -> [ImageSet] {
+        return try fetch(from: assetsPath)
+    }
 }

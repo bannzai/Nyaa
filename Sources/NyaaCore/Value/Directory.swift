@@ -8,7 +8,9 @@
 import Foundation
 
 public protocol Directory {
-    var type: DirectoryType { get }
-    var parents: [Directory] { get }
+    static var type: DirectoryType { get }
+    var parents: [String] { get }
     var name: String { get }
+    
+    init(parents: [String], name: String)
 }
